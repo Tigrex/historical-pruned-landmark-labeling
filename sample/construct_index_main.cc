@@ -1,7 +1,8 @@
-#include "historical_pruned_landmark_labeling.h"
+#include "historical_pruned_landmark_labeling_directed.h"
+#include <iostream>
 #include <fstream>
-#include <boost/archive/binary_oarchive.hpp>
-#include <boost/serialization/vector.hpp>
+#include <chrono>
+#include <cereal/archives/binary.hpp>
 using namespace std;
 
 int main(int argc, char **argv) {
@@ -11,13 +12,27 @@ int main(int argc, char **argv) {
   }
 
   historical_pruned_landmark_labeling hpll;
+
+  auto start = std::chrono::system_clock::now();
   hpll.construct_index(argv[1]);
+  
+  auto end = std::chrono::system_clock::now();
+  auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+  cout << "Construct labels time: " << elapsed.count() << endl;
 
-  ofstream ofs(argv[2]);
-  HPLL_CHECK(ofs);
-  boost::archive::binary_oarchive oa(ofs);
-  oa << hpll;
+  ofstream ofs;
+  ofs.open(argv[2], ios::binary);
+
+  if (ofs.good()) {
+    {
+      cereal::BinaryOutputArchive oa(ofs);
+      oa << hpll;
+    }
+
+  }
+
   ofs.close();
-
+  cout << "Write labels to file" << endl;
   exit(EXIT_SUCCESS);
+
 }
