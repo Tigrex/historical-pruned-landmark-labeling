@@ -1,3 +1,5 @@
+Modified from the origin code to support directed graph. -- Peng
+
 Historical Pruned Landmark Labeling
 ===================================
 

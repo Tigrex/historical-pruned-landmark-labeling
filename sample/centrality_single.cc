@@ -8,7 +8,7 @@ using namespace std;
 
 int main(int argc, char **argv) {
   if (argc != 3) {
-    cerr << "usage: centrality file_name source_index" << endl;
+    cerr << "usage: centrality_single file_name source_index" << endl;
     exit(EXIT_FAILURE);
   }
 

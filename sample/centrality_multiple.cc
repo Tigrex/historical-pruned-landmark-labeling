@@ -8,7 +8,7 @@ using namespace std;
 
 int main(int argc, char **argv) {
   if (argc != 3) {
-    cerr << "usage: centrality_test serialization_file_name source_id_file_name" << endl;
+    cerr << "usage: centrality_multiple serialization_file_name source_id_file_name" << endl;
     exit(EXIT_FAILURE);
   }
 

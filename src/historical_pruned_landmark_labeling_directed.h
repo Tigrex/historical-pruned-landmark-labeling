@@ -106,11 +106,11 @@ class historical_pruned_landmark_labeling {
   // Graph and index
   int V;
   int T;
+  std::vector<std::vector<label_entry_t>> f_labels;
+  std::vector<std::vector<label_entry_t>> r_labels;
   std::vector<std::vector<edge_t>> f_adj;
   std::vector<std::vector<edge_t>> r_adj;
   std::vector<int> ord;
-  std::vector<std::vector<label_entry_t>> f_labels;
-  std::vector<std::vector<label_entry_t>> r_labels;
 
 
   void get_root_order(std::vector<int> &ord);
@@ -120,9 +120,6 @@ class historical_pruned_landmark_labeling {
   void serialize(Archive & ar) {
     ar & V;
     ar & T;
-    ar & f_adj;
-    ar & r_adj;
-    ar & ord;
     ar & f_labels;
     ar & r_labels;
   }
