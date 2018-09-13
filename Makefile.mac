@@ -1,4 +1,4 @@
-CXX = g++
+CXX = g++-8
 CXXFLAGS = -g -Wall -Wextra -Icereal-1.2.2/include -pthread -std=c++0x -fopenmp -O3
 
 
