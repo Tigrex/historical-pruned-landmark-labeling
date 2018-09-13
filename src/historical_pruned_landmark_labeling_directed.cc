@@ -75,7 +75,12 @@ void historical_pruned_landmark_labeling::construct_index(const char *filename) 
 
 void historical_pruned_landmark_labeling::construct_index(istream &ifs) {
   std::vector<std::tuple<int, int, int> > es;
-  for (int t, v, w; ifs >> t >> v >> w; ) es.emplace_back(t, v, w);
+  char token1, token2;
+  for (int t, v, w; ifs >> v >> token1 >> w >> token2 >> t; ) {
+    es.emplace_back(t, v, w);
+    // cout << "v: " << v << ", w: " << w << ", t: " << t << endl;
+  }
+
   HPLL_CHECK(!ifs.bad());
   construct_index(es);
 
